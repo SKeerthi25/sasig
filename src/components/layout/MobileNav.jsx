@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   ChevronDown, X, Sparkles, Users2, Receipt, LifeBuoy,
   FolderKanban, HeartHandshake, MessageSquareText, BarChart3,
   Cpu, ArrowRight, ShieldCheck, HelpCircle, Briefcase,
-  Layers, Phone, Mail, Building2, Compass
+  Layers, Phone, Mail, Building2, Compass, Home
 } from 'lucide-react';
 import { products } from '../../data/productsData';
 import { solutions } from '../../data/solutionsData';
@@ -27,6 +27,7 @@ const productIcons = {
 
 export const MobileNav = ({ isOpen, onClose }) => {
   const [openSection, setOpenSection] = useState('products');
+  const location = useLocation();
 
   useEffect(() => {
     if (isOpen) {
@@ -74,17 +75,40 @@ export const MobileNav = ({ isOpen, onClose }) => {
 
           {/* Nav Items Container */}
           <div className="p-5 space-y-3">
-            {/* 1. ABOUT US (FIRST IN ORDER) */}
+            {/* 0. HOME (FIRST IN ORDER) */}
+            <Link
+              to="/"
+              onClick={onClose}
+              className={`flex items-center justify-between p-3.5 rounded-2xl font-heading font-extrabold text-sm transition-all group ${
+                location.pathname === '/'
+                  ? 'text-brand-emerald-800 dark:text-brand-emerald-200 bg-brand-emerald-100 dark:bg-brand-emerald-950/80 border border-brand-emerald-300 dark:border-brand-emerald-700'
+                  : 'text-brand-slate-900 dark:text-white bg-brand-emerald-50/50 dark:bg-brand-slate-800/50 border border-brand-emerald-100 dark:border-brand-slate-700/60 hover:bg-brand-emerald-100/70 dark:hover:bg-brand-slate-800'
+              }`}
+            >
+              <div className="flex items-center gap-2.5">
+                <Home className="w-5 h-5 text-brand-emerald-600 dark:text-brand-emerald-400" />
+                <span>Home</span>
+              </div>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-emerald-200/80 dark:bg-brand-emerald-900 text-brand-emerald-900 dark:text-brand-emerald-200">
+                Main
+              </span>
+            </Link>
+
+            {/* 1. ABOUT US */}
             <Link
               to="/about"
               onClick={onClose}
-              className="flex items-center justify-between p-4 rounded-2xl font-heading font-extrabold text-sm text-brand-slate-900 dark:text-white bg-brand-emerald-50/70 dark:bg-brand-emerald-950/50 border border-brand-emerald-200 dark:border-brand-emerald-800/60 hover:bg-brand-emerald-100 dark:hover:bg-brand-emerald-900/60 transition-all group"
+              className={`flex items-center justify-between p-3.5 rounded-2xl font-heading font-extrabold text-sm transition-all group ${
+                location.pathname === '/about'
+                  ? 'text-brand-emerald-800 dark:text-brand-emerald-200 bg-brand-emerald-100 dark:bg-brand-emerald-950/80 border border-brand-emerald-300 dark:border-brand-emerald-700'
+                  : 'text-brand-slate-900 dark:text-white bg-brand-emerald-50/50 dark:bg-brand-slate-800/50 border border-brand-emerald-100 dark:border-brand-slate-700/60 hover:bg-brand-emerald-100/70 dark:hover:bg-brand-slate-800'
+              }`}
             >
               <div className="flex items-center gap-2.5">
                 <Building2 className="w-5 h-5 text-brand-emerald-600 dark:text-brand-emerald-400" />
                 <span>About Us (Hull, UK)</span>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-emerald-200 dark:bg-brand-emerald-900 text-brand-emerald-900 dark:text-brand-emerald-200">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-emerald-200/80 dark:bg-brand-emerald-900 text-brand-emerald-900 dark:text-brand-emerald-200">
                 Our Story
               </span>
             </Link>

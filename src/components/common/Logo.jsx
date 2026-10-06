@@ -66,6 +66,7 @@ export const Logo = ({
   isWhite = false,
   showTagline = false,
   linkTo = "/",
+  onClick,
   className = ""
 }) => {
   const sizeMap = {
@@ -78,7 +79,10 @@ export const Logo = ({
   const currentSize = sizeMap[size] || sizeMap.md;
 
   const content = (
-    <div className={`flex items-center gap-3 select-none group cursor-pointer ${className}`}>
+    <div
+      onClick={!linkTo ? onClick : undefined}
+      className={`flex items-center gap-3 select-none group cursor-pointer ${className}`}
+    >
       <LogoIcon size={currentSize.icon} className="transition-transform duration-300 group-hover:scale-105" />
       
       {variant !== 'icon' && (
@@ -105,7 +109,12 @@ export const Logo = ({
 
   if (linkTo) {
     return (
-      <Link to={linkTo} aria-label="SASIG LTD - Return to homepage" className="inline-flex">
+      <Link
+        to={linkTo}
+        onClick={onClick}
+        aria-label="SASIG LTD - Return to homepage"
+        className="inline-flex"
+      >
         {content}
       </Link>
     );

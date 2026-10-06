@@ -49,9 +49,22 @@ export const Header = () => {
             <Logo size="md" showTagline={false} />
           </div>
 
-          {/* 2. Desktop Mega Menu Navigation Links (ABOUT US FIRST) */}
+          {/* 2. Desktop Mega Menu Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {/* 1. About Us (First) */}
+            {/* 0. Home */}
+            <Link
+              to="/"
+              onMouseEnter={handleMenuLeave}
+              className={`px-3.5 py-2 rounded-xl text-sm font-heading font-bold transition-colors ${
+                location.pathname === '/'
+                  ? 'text-brand-emerald-600 dark:text-brand-emerald-300 bg-brand-emerald-50 dark:bg-brand-slate-900'
+                  : 'text-brand-slate-800 dark:text-brand-slate-100 hover:text-brand-emerald-600 dark:hover:text-brand-emerald-300 hover:bg-brand-emerald-50/50 dark:hover:bg-brand-slate-900/50'
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* 1. About Us */}
             <Link
               to="/about"
               onMouseEnter={handleMenuLeave}
