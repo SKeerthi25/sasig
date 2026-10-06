@@ -110,31 +110,46 @@ export const ProductDetailPage = () => {
           </div>
         </div>
 
-        {/* 2. PRODUCT MOCKUP SPOTLIGHT */}
-        <div className="mb-20">
-          {product.id === 'crm' && <CRMMockup />}
-          {product.id === 'books' && <BooksMockup />}
-          {product.id !== 'crm' && product.id !== 'books' && (
-            <div className="p-8 rounded-3xl bg-white dark:bg-brand-plum-900 border border-brand-violet-200 dark:border-brand-violet-800 shadow-2xl text-center space-y-4">
-              <div
-                className="w-16 h-16 rounded-3xl text-white flex items-center justify-center mx-auto shadow-md"
-                style={{ backgroundColor: product.color }}
-              >
-                <ProductIcon className="w-8 h-8" />
+        {/* 2. PRODUCT SOFTWARE SCREENSHOT SPOTLIGHT */}
+        <div className="mb-20 space-y-6">
+          <div className="rounded-3xl bg-brand-obsidian-900 dark:bg-brand-obsidian-950 p-2 sm:p-3 shadow-2xl border-2 border-brand-emerald-500/30 overflow-hidden group">
+            {/* Window title bar */}
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-brand-obsidian-800 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-brand-rose-500"></div>
+                <div className="w-3 h-3 rounded-full bg-brand-champagne-400"></div>
+                <div className="w-3 h-3 rounded-full bg-brand-emerald-400"></div>
+                <span className="ml-2 font-mono text-[11px] text-brand-obsidian-300">
+                  app.sasigltd.co.uk/{product.slug}
+                </span>
               </div>
-              <h3 className="font-heading font-black text-2xl text-brand-plum-900 dark:text-white">
-                Interactive {product.name} Workspace
-              </h3>
-              <p className="text-sm text-brand-plum-600 dark:text-brand-plum-300 max-w-lg mx-auto">
-                Real-time collaboration, instant data sync with SASIG Books and CRM, and automated UK compliance logging.
-              </p>
-              <div className="pt-2 flex justify-center">
-                <Button to="/demo" variant="primary" size="md">
-                  Launch Interactive Demo
-                </Button>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-emerald-950 text-brand-emerald-300 border border-brand-emerald-800 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald-400 animate-pulse"></span>
+                  UK Cloud Active
+                </span>
               </div>
             </div>
-          )}
+
+            {/* Software image */}
+            <div className="relative overflow-hidden rounded-2xl bg-brand-obsidian-950">
+              <img
+                src={
+                  product.id === 'crm' ? '/images/crm_pipeline.jpg' :
+                  product.id === 'books' ? '/images/books_accounting.jpg' :
+                  product.id === 'projects' ? '/images/projects_tasks.jpg' :
+                  '/images/hero_dashboard.jpg'
+                }
+                alt={`${product.name} software interface screenshot`}
+                className="w-full h-auto object-cover rounded-2xl group-hover:scale-[1.01] transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          {/* Interactive contextual widget below image */}
+          {product.id === 'crm' && <CRMMockup />}
+          {product.id === 'books' && <BooksMockup />}
         </div>
 
         {/* 3. DETAILED ALTERNATING FEATURE SECTIONS */}
